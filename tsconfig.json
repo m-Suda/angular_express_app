@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es5",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    // Any型の使用を許可する（一部のimportができない場合を考慮して。）
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    // コンパイルに含めるライブラリファイルの指定
+    "moduleResolution": "node",
+    // モジュールの名前解決の方法 https://www.typescriptlang.org/docs/handbook/module-resolution.html
+    "removeComments": true,
+    // /*!で始まるコメント以外を除去する
+    "strict": true,
+    // noImplicitAny, noImplicitThis, alwaysStrict, strictNullChecks を true にする
+    "noUnusedLocals": true,
+    // 使ってないローカル変数をエラーにする
+    "noUnusedParameters": false,
+    // 使ってない仮引数をエラーにする
+    "noImplicitReturns": true
+    // 暗黙的に undefined を返却している関数をエラーにする
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
