@@ -1,14 +1,7 @@
-import * as Express from 'express';
+import app from './app';
 
-const app = Express();
-const port = 3000;
+const PORT = 3000;
 
-app.get('/', (req: Express.Request, res: Express.Response) => {
-    return res.send('Hello World');
+app.listen(PORT, () => {
+    console.log(`Express server listening on port ${PORT}`);
 });
-
-app.listen(port, () => {
-    console.log('Express app listening on port 3000!');
-});
-
-export default app;
