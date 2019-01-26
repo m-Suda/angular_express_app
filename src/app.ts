@@ -15,6 +15,12 @@ class App {
     private config() {
 
         this.app.use(bodyParser.json());
+        // SPAからAPIを叩くとCORSに引っかかるので設定
+        // this.app.use((req, res, next) => {
+        //     res.header('Access-Control-Allow-Origin', '*');
+        //     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        //     next();
+        // });
 
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use('/main', mainRoutes);
