@@ -1,35 +1,72 @@
 import { Request, Response } from "express";
-import * as config from '../settings/config';
-
-import { Postgres } from "../database/Postgres";
+import { mstUser } from "../repository/MstUser";
 
 export class MainController {
 
-    public async index(req: Request, res: Response) {
-
-        const db: Postgres = new Postgres(config.host, config.database, config.dbUser, config.dbUserPassword);
-        db.connect();
-
-        const query: string = `
-          SELECT user_id, user_name, create_date, create_user, update_date, update_user
-          FROM mst_user
-          WHERE is_delete = $1
-        `;
-        const param = [ 0 ];
+    public async fetch_all(req: Request, res: Response) {
 
         try {
 
-            const result = await db.query(query, param);
-            db.end();
+            const result = await mstUser.selectAll();
             res.status(200).send({
                 message: result
             });
         } catch (e) {
 
-            db.end();
             console.error(e);
             res.status(500).send({
-                message: 'Query Failed!'
+                message: 'User Fetch Failed!'
+            });
+        }
+    }
+
+    public async fetch(req: Request, res: Response) {
+
+        try {
+
+            const result = await mstUser.select(req.body.userId);
+            res.status(200).send({
+                message: result
+            });
+        } catch (e) {
+
+            console.error(e);
+            res.status(500).send({
+                message: 'User Fetch Failed!'
+            });
+        }
+    }
+
+    public async register(req: Request, res: Response) {
+
+        try {
+
+            await mstUser.insert(req.body);
+            res.status(200).send({
+                message: 'Insert Success!'
+            });
+        } catch (e) {
+
+            console.error(e);
+            res.status(500).send({
+                message: 'User Insert Failed!'
+            });
+        }
+    }
+
+    public async modify(req: Request, res: Response) {
+
+        try {
+
+            await mstUser.update(req.body);
+            res.status(200).send({
+                message: 'Update Success!'
+            });
+        } catch (e) {
+
+            console.error(e);
+            res.status(500).send({
+                message: 'User Update Failed!'
             });
         }
     }
