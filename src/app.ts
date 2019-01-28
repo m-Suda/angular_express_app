@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { mainRoutes } from "./routes/MainRoutes";
+import { userRoutes } from "./routes/UserRoutes";
 
 class App {
 
@@ -24,7 +24,7 @@ class App {
         });
 
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.app.use('/main', mainRoutes);
+        this.app.use('/user', userRoutes);
     }
 
 }

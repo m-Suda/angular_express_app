@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { mstUser } from "../repository/MstUser";
 
-export class MainController {
+export class UserController {
 
     public async fetch_all(req: Request, res: Response) {
 
@@ -72,4 +72,4 @@ export class MainController {
     }
 }
 
-export const mainController = new MainController();
+export const userController = new UserController();

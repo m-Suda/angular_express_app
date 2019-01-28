@@ -1,7 +1,7 @@
 import * as express from 'express';
-import { mainController } from '../controller/MainController';
+import { userController } from '../controller/UserController';
 
-class MainRoutes {
+class UserRoutes {
 
     public router: express.Router = express.Router();
 
@@ -13,18 +13,18 @@ class MainRoutes {
     private config(): void {
 
         this.router.get('/fetchAll', (req: express.Request, res: express.Response) => {
-            mainController.fetch_all(req, res);
+            userController.fetch_all(req, res);
         });
         this.router.post('/fetch', (req: express.Request, res: express.Response) => {
-            mainController.fetch(req, res);
+            userController.fetch(req, res);
         });
         this.router.post('/register', (req: express.Request, res: express.Response) => {
-            mainController.register(req, res);
+            userController.register(req, res);
         });
         this.router.post('/modify', (req: express.Request, res: express.Response) => {
-            mainController.modify(req, res);
+            userController.modify(req, res);
         });
     }
 }
 
-export const mainRoutes = new MainRoutes().router;
+export const userRoutes = new UserRoutes().router;
