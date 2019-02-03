@@ -9,7 +9,7 @@ export class UserController {
 
             const result = await mstUser.selectAll();
             res.status(200).send({
-                message: result
+                users: result
             });
         } catch (e) {
 
@@ -24,9 +24,9 @@ export class UserController {
 
         try {
 
-            const result = await mstUser.select(req.body.userId);
+            const result = await mstUser.select(req.params.userId);
             res.status(200).send({
-                message: result
+                user: result
             });
         } catch (e) {
 
